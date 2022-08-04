@@ -5,16 +5,24 @@ import { useRouter } from 'next/router'
 const Pokemon = ({ data }) => {
     const router = useRouter()
     console.log(router)
-
+    console.log(data)
     if (router.isFallback) {
-        return <p>Cargando...</p>
+        return (
+            <div>
+                <Image src="/pokebola.png" width={200} height={200} />
+                <p>Cargando...</p>
+            </div>
+        )
     }
     return (
         <div>
             <h1>{data.name} número #{data.id}</h1>
             <Image src={data.sprites.front_default} width={200} height={200} />
-            {/* <Link href={`/pokemones/${data.id == 1 ? data.id : data.id-1}`}>anterior    </Link>
-            <Link href={`/pokemones/${data.id == 151 ? data.id : data.id+1}`}>Siguiente</Link><br/> */}
+            <Image src={data.sprites.back_default} width={200} height={200} />
+            <Image src={data.sprites.front_shiny} width={200} height={200} />
+            <Image src={data.sprites.back_shiny} width={200} height={200} />
+            <Link href={`/pokemones/${data.id == 1 ? data.id : data.id-1}`}>anterior    </Link>
+            <Link href={`/pokemones/${data.id == 151 ? data.id : data.id+1}`}>Siguiente</Link><br/>
             <Link href="/">Volver al inicio</Link><br/>
             {/* <img src={data.sprites.back_default} />
             <img src={data.sprites.back_shiny} />
